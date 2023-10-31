@@ -1,10 +1,14 @@
 package com.accenture.tagtrainingspring;
 
+import java.util.ArrayList;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.accenture.tagtrainingspring.patient.Patient;
 import com.accenture.tagtrainingspring.screening.Screening;
+import com.accenture.tagtrainingspring.screening.ScreeningDatabase;
+import com.accenture.tagtrainingspring.service.ScreeningService;
 
 @SpringBootApplication
 public class TagTrainingSpringApplication {
@@ -26,12 +30,16 @@ public class TagTrainingSpringApplication {
 				"    |_/_/    \\_\\_____|    |_|_|  \\__,_|_|_| |_|_|_| |_|\\__, |\n" +
 				"                                                        __/ |\n" +
 				"                                                       |___/ \n");
-		Patient patient = new Patient();
-		Screening screening = new Screening();
-		patient.setName("Hugh Butler");
-		screening.setMalignant(false);
 
-		System.out.println(patient.getName()+" has a cancer status of "+screening.isMalignant());
+		ScreeningDatabase screeningDatabase = new ScreeningDatabase (); 
+		ScreeningService screeningSerivce = new ScreeningService(screeningDatabase);
 
+		ArrayList<Screening> screenings = screeningSerivce.getScreenings();
+
+		for (Screening screening : screenings) {
+			System.out.println(screening.getPatientId().getName()+" has a cancer status of "+screening.isMalignant());
+		}
+
+		//System.out.println(patient1.getName()+" has a cancer status of "+screening1.isMalignant());
 	}
 }

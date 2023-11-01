@@ -1,38 +1,32 @@
 package com.accenture.tagtrainingspring.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.accenture.tagtrainingspring.patient.Patient;
 import com.accenture.tagtrainingspring.screening.Screening;
-import com.accenture.tagtrainingspring.screening.ScreeningDatabase;
+import com.accenture.tagtrainingspring.screening.ScreeningDaoImpl;
 
 @Service
 public class ScreeningService {
 
     @Autowired
-    private ScreeningDatabase screeningDatabase;
+    private ScreeningDaoImpl screeningDaoImpl;
 
-    public ScreeningService(){}; 
-
-    public ScreeningService(ScreeningDatabase screeningDatabase) {
-        this.screeningDatabase = screeningDatabase;
-    }; 
     
-
-    public boolean isForPatient(Patient patient, Screening screening) {
+    public boolean isPatientScreening (Patient patient, Screening screening) {
 
         boolean ret = false;
 
-        if (screening.getPatientId().getId() == patientId().getId())
-            ret = true;
+        //if (screening.getScreeningId() == patient.getId() )ret = true;
 
         return ret;
     }
 
-    public ArrayList<Screening> getScreenings(){
-        return this.screeningDatabase.getScreenings();
+    public List<Screening> getScreenings(){
+        return screeningDaoImpl.getScreenings();
     }
 }

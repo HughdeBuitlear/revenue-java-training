@@ -1,6 +1,6 @@
 package com.accenture.tagtrainingspring.screening;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,10 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class ScreeningController {
 
     @Autowired
-    ScreeningDatabase screeningDatabase;
+    ScreeningDaoImpl ScreeningDaoImpl;
 
     @GetMapping("/screenings")
-    public ArrayList<Screening> getScreenings() {
-        return screeningDatabase.getScreenings();
+    public List<Screening> getScreenings() {
+        return ScreeningDaoImpl.getScreenings();
+    };
+
+        @GetMapping("/screenings")
+    public List<Screening> getScreenings() {
+        return ScreeningDaoImpl.getScreenings();
     };
 }

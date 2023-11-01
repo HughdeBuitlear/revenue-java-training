@@ -19,5 +19,4 @@ public class DataSourceConfig {
                 .addScript("classpath:db/data.sql")
                 .build();
     }
-
 }
